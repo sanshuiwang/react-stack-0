@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -67,11 +68,16 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
-    hot: true
+    hot: true,
+    port: 1000
   },
 
   /*不刷新页面只更换更改的地方HotModuleReplacementPlugin()*/
   plugins:[
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.join(__dirname, 'src/index.html')
+    }),
      new webpack.HotModuleReplacementPlugin()
   ]
 }
